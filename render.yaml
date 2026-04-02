@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: yt313-proxy
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: PORT
+        value: 8080
+    plan: free          # zmień na starter jeśli chcesz żeby nie usypiał
+    healthCheckPath: /
